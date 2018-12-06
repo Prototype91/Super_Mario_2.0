@@ -1,17 +1,42 @@
 //On précise que nous taperons de l'utf 8 dans la console
 process.stdin.setEncoding('utf8');
 
-//Création de la map du jeu
-let map = [
-    ['P', 'J', '9', '2', '1'],
-    ['B', '_', '_', '_', 'L'],
-    ['2', '_', '2', 'N', '_'],
-    ['_', 'A', '_', '_', '_'],
-    ['2', '_', '_', 'E', 'O'],
-    ['L', '_', '_', '_', '_'],
-    ['_', 'C', 'T', 'M', '9'],
-    ['1', '_', '_', '_', '1'],
-];
+//Importation des différents modules :
+const figlet = require('figlet');
+const clear = require('clear');
+const chalk = require('chalk');
+const inquirer = require('inquirer');
+
+//Fonction slowLog
+const slowLog = require('./functions/slow_log');
+
+//Importation du dé à 20 faces
+const roll_diceModule = require('./functions/dice.js');
+
+//Importation de la map
+const map = require('./map');
+
+//Importations des textes et dialogues
+const rules = require('./texts/rules');
+const intro = require('./texts/intro');
+const suite = require('./texts/suite');
+const help = require('./texts/help');
+
+
+//Importation des personnages
+const mario = require('./characters/mario');
+const bowser = require('./characters/bowser');
+const bowser_jr = require('./characters/bowser_jr');
+const king_boo = require('./characters/king_boo');
+const taupe = require('./characters/taupe');
+
+//Importation des armes
+const hammer = require('./objects/hammer');
+const sword = require('./objects/sword');
+
+//Inventaire et équipement
+let inventaire = [];
+let current_equipment = [];
 
 //Position initiale du Joueur
 //y = map[] et x = [][]
@@ -19,31 +44,6 @@ let joueur = {
     x: 2,
     y: 7
 };
-
-//Afficher le texte au fur et à mesure
-function slow_log_simple(mot, time) {
-    let lettre_courante = 0;
-    for (let i = 0; i < mot.length; i++) {
-        setTimeout(() => {
-            process.stdout.write(mot[lettre_courante]);
-            lettre_courante++;
-        }, i * time);
-    }
-}
-
-function slowLog(texte, time, suite) {
-    let lettreCourante = 0;
-    for (let i = 0; i < texte.length + 1; i++) {
-        setTimeout(() => {
-            if (i < texte.length) {
-                process.stdout.write(texte[lettreCourante]);
-                lettreCourante++;
-            } else {
-                suite();
-            }
-        }, i * time);
-    }
-}
 
 //Direction = N, NE, NO, E, W, SE, ou SO
 function go(direction) {
@@ -167,10 +167,10 @@ function go(direction) {
             console.log("Vous êtes dans la chambre de la princesse, pas touche à ses petites culottes !");
             break;
         case "N":
-            console.log("Vous êtes aux toilettes, poser une mine ?");
+            console.log("Vous êtes aux toilettes du château, refaire la déco ? OUI ou NON ?");
             break;
         case "1":
-            console.log("Vous êtes au bord d'une falaise !");
+            console.log("Vous êtes au bord d'une falaise ! Sauter ? OUI ou NON ?");
             break;
         case "2":
             console.log("Vous êtes proche du but, les cris de la princesse se font entendre !");
@@ -189,47 +189,6 @@ function go(direction) {
             }
             break;
     };
-};
-
-//Importation du dé à 20 faces
-const roll_diceModule = require('./dice.js')
-
-// Création des personnages du jeu :
-let mario = {
-    name: "Mario",
-    health: 300,
-    attack: 20,
-    armor: 12,
-    weight_character: 0,
-    limite: 12 * 7.5
-}
-
-let taupe = {
-    name: "Taupi Taupe",
-    health: 60,
-    attack: 10,
-    armor: 6,
-}
-
-let bowser = {
-    name: "Bowser",
-    health: 180,
-    attack: 20,
-    armor: 14,
-};
-
-let bowser_jr = {
-    name: "Bowser Jr.",
-    health: 100,
-    attack: 10,
-    armor: 9,
-};
-
-let king_boo = {
-    name: "Roi Boo",
-    health: 100,
-    attack: 9,
-    armor: 10,
 };
 
 //fonction pour attaquer
@@ -255,40 +214,6 @@ function Attack(attacker, defencer) {
     }
 }
 
-//Armes
-let sword = {
-    name: "Épée Magique",
-    weight: 10,
-    attaque: 10,
-    charges: 15,
-    bonus: 20,
-    effect: function () {
-        if (this.charges >= 5) {
-            this.charges -= 2;
-            grab_equipment();
-        } else {
-            console.log("Pas assez de charges dans l'objet.")
-        }
-
-    }
-};
-
-let hammer = {
-    name: "Marteau Magique",
-    weight: 10,
-    bonus: 20
-};
-
-//Utilisation effet
-function Use(object) {
-    object.effect();
-};
-
-//Inventaire et équipement
-let inventaire = [];
-let equipment = [];
-let current_equipment = [];
-
 //Ramasser un équipement
 function grab_equipment(equipment) {
     if (equipment.weight + mario.weight_character < mario.limite && equipment.name !== undefined) {
@@ -298,14 +223,6 @@ function grab_equipment(equipment) {
     } else {
         console.log("Cet équipement est trop lourd, vider une partie de vôtre sac !");
     }
-};
-
-//Jeter un équipement
-function throw_equipement(indice) {
-
-    let j = inventaire.splice(indice, 1);
-    mario.weight_character -= indice;
-    console.log(j[0] + " jeté.");
 };
 
 //Montrer l'inventaire
@@ -318,7 +235,7 @@ function show_inventaire() {
 
 }
 
-//Équipé une arme, un bouclier
+//Équipé une arme
 function equip(equipment) {
     if (current_equipment.length < 1) {
         current_equipment.push(equipment.name);
@@ -331,48 +248,6 @@ function equip(equipment) {
         console.log("Vous êtes déja équipé d'une arme.")
     }
 };
-
-//Déséquiper une arme, un bouclier
-function unequip(equipment) {
-    current_equipment.splice(current_equipment.indexOf(equipment.name), 1);
-    console.log(equipment.name + " déséquipé.")
-    inventaire.push(equipment.name);
-    mario.attack -= equipment.bonus;
-};
-
-let intro =
-    `
-Au secours Mario, c'est moi la Princesse Peach !
-Bowser m'a encore une fois kidnappé au château et je suis prisonnière quelque part dans ce monde ...
-Viens me sauver je t'en supplie !
-`;
-
-let rules = `
-Vous pénétrez alors ce monde à la recherche de la princesse.
-Pour la sauver, vous devez parcourir la map, trouver son emplacement et battre les 3 Boss (Bowser, Roi Boo et Bowser Jr.)
-Attention, Taupi Taupe se balade et peut vous causer du tort !
-
-Choisissez une direction : 
-
-    N = Nord
-    S = Sud
-    E = Est
-    O = Ouest
-    
-    NE = Nord-Est
-    NO = Nord-Ouest
-    SE = Sud-Est
-    SO = Sud-Ouest
-
-Vous pouvez également afficher l'inventaire en tapant INVENTAIRE et vos stats en tapant STATS.
-Tapez HELP pour afficher ces consignes !
-
-Vos ordres : `;
-
-let suite =
-    `
-Et maintenant ?
-`
 
 //A chaque entrée dans la console, on appellera la fonction fléchée, rep sera la réponse tapée dans la console
 //Ici on déclare ce que l'on fera lorsqu'on recevra une donnée
@@ -438,6 +313,42 @@ process.stdin.on('data', (d) => {
             });
         });
     }
+    //Réponse du joueur aux toilettes :
+    if (rep == "OUI" && (joueur.x == 3 && joueur.y == 2)) {
+        console.log("Mario pose une mine et se sent plus léger dés à présent !");
+        process.stdin.pause(); //stopper l'entrée
+        slowLog(suite, 10, () => {
+            slowLog(`Vos ordres : `, 10, () => {
+                process.stdin.resume();//réactiver l'entrée à la fin du log
+            });
+        });
+    }
+    //Réponse du joueur aux toilettes :
+    if (rep == "NON" && (joueur.x == 3 && joueur.y == 2)) {
+        console.log("Mario se contente d'admirer le trône...");
+        process.stdin.pause(); //stopper l'entrée
+        slowLog(suite, 10, () => {
+            slowLog(`Vos ordres : `, 10, () => {
+                process.stdin.resume();//réactiver l'entrée à la fin du log
+            });
+        });
+    }
+    //Réponse du joueur au bord de la falaise :
+    if (rep == "OUI" && ((joueur.x == 4 && joueur.y == 0) || (joueur.x == 4 && joueur.y == 7) || (joueur.x == 0 && joueur.y == 7))) {
+        console.log("Mario saute et met fin à ses jours ! RIP Princesse Peach...");
+        console.log("GAME OVER");
+        process.exit();
+    }
+    //Réponse du joueur au bord de la falaise :
+    if (rep == "NON" && ((joueur.x == 4 && joueur.y == 0) || (joueur.x == 4 && joueur.y == 7) || (joueur.x == 0 && joueur.y == 7))) {
+        console.log("Mario se contente d'admirer la vue !");
+        process.stdin.pause(); //stopper l'entrée
+        slowLog(suite, 10, () => {
+            slowLog(`Vos ordres : `, 10, () => {
+                process.stdin.resume();//réactiver l'entrée à la fin du log
+            });
+        });
+    }
     if (rep == "NE") {
         go("NE");
         process.stdin.pause(); //stopper l'entrée
@@ -475,23 +386,7 @@ process.stdin.on('data', (d) => {
         });
     }
     if (rep == "HELP") {
-        console.log(`
-Pour la sauver, vous devez parcourir la map, trouver son emplacement et battre les 3 Boss (Bowser, Roi Boo et Bowser Jr.)
-        
-Choisissez une direction : 
-        
-            N = Nord
-            S = Sud
-            E = Est
-            O = Ouest
-            
-            NE = Nord-Est
-            NO = Nord-Ouest
-            SE = Sud-Est
-            SO = Sud-Ouest
-        
-Vous pouvez également afficher l'inventaire en tapant INVENTAIRE et vos stats en tapant STATS.
-            `);
+        console.log(help);
         process.stdin.pause(); //stopper l'entrée
         slowLog(suite, 10, () => {
             slowLog(`Vos ordres : `, 10, () => {
@@ -611,6 +506,16 @@ Vous pouvez également afficher l'inventaire en tapant INVENTAIRE et vos stats e
             });
         });
     }
+    if (rep.substr(0, 1).toUpperCase() != rep.substr(0, 1)) {
+        console.log('Mario ne comprend pas quand tu lui parles avec des espaces et des lettres minuscules ! Apprends à lire mon petit !');
+        process.stdin.pause(); //stopper l'entrée
+        slowLog(suite, 10, () => {
+            slowLog(`Vos ordres : `, 10, () => {
+                process.stdin.resume();//réactiver l'entrée à la fin du log
+            });
+        });
+    }
+
     if (rep == "FAIRE DES BEBES" && bowser.health <= 0 && bowser_jr.health <= 0 && king_boo.health <= 0 && joueur.x == 0 && joueur.y == 0) {
         console.log("Vous retournez au château et lui faites l'amour comme une bête ! Marriiiioooooooooo !!!!!");
         process.exit();
