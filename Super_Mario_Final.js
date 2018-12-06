@@ -7,6 +7,9 @@ const clear = require('clear');
 const chalk = require('chalk');
 const inquirer = require('inquirer');
 
+const questions = require('./questions');
+const bonnes_reponses = require('./reponses');
+
 //Fonction slowLog
 const slowLog = require('./functions/slow_log');
 
@@ -534,8 +537,14 @@ process.stdin.on('data', (d) => {
 /* début du script ici */
 process.stdin.pause(); //stopper l'entrée pour ne pas pirater le texte
 
-slowLog(intro, 30, () => {
-    slowLog(rules, 30, () => {
-        process.stdin.resume(); //réactiver l'entrée
+
+
+function start(){
+    slowLog(intro, 1, () => {
+        slowLog(rules, 1, () => {
+            process.stdin.resume(); //réactiver l'entrée
+        });
     });
-});
+}
+
+start()
