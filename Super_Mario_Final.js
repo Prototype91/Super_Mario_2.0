@@ -538,13 +538,8 @@ process.stdin.on('data', (d) => {
 process.stdin.pause(); //stopper l'entrée pour ne pas pirater le texte
 
 
-
-function start(){
-    slowLog(intro, 1, () => {
-        slowLog(rules, 1, () => {
-            process.stdin.resume(); //réactiver l'entrée
-        });
+slowLog(intro, 1, () => {
+    slowLog(rules, 1, () => {
+        process.stdin.resume(); //réactiver l'entrée
     });
-}
-
-start()
+});
