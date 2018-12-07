@@ -8,7 +8,7 @@ const chalk = require('chalk');
 const inquirer = require('inquirer');
 
 const questions = require('./questions');
-const bonnes_reponses = require('./reponses');
+
 
 //Fonction slowLog
 const slowLog = require('./functions/slow_log');
@@ -278,7 +278,7 @@ function processOrdre (d) {
         process.stdin.pause(); //stopper l'entrée
         slowLog(suite, 10, () => {
             slowLog(`Vos ordres : `, 10, () => {
-                vosOrdres();//réactiver l'entrée à la fin du log
+                vosOrdres();
             });
         });
     }
@@ -287,7 +287,7 @@ function processOrdre (d) {
         process.stdin.pause(); //stopper l'entrée
         slowLog(suite, 10, () => {
             slowLog(`Vos ordres : `, 10, () => {
-                process.stdin.resume();//réactiver l'entrée à la fin du log
+                vosOrdres();
             });
         });
     }
@@ -296,7 +296,7 @@ function processOrdre (d) {
         process.stdin.pause(); //stopper l'entrée
         slowLog(suite, 10, () => {
             slowLog(`Vos ordres : `, 10, () => {
-                process.stdin.resume();//réactiver l'entrée à la fin du log
+                vosOrdres();
             });
         });
     }
@@ -307,7 +307,7 @@ function processOrdre (d) {
         process.stdin.pause(); //stopper l'entrée
         slowLog(suite, 10, () => {
             slowLog(`Vos ordres : `, 10, () => {
-                process.stdin.resume();//réactiver l'entrée à la fin du log
+                vosOrdres();
             });
         });
     }
@@ -320,7 +320,7 @@ function processOrdre (d) {
         process.stdin.pause(); //stopper l'entrée
         slowLog(suite, 10, () => {
             slowLog(`Vos ordres : `, 10, () => {
-                process.stdin.resume();//réactiver l'entrée à la fin du log
+                vosOrdres();
             });
         });
     }
@@ -329,7 +329,7 @@ function processOrdre (d) {
         process.stdin.pause(); //stopper l'entrée
         slowLog(suite, 10, () => {
             slowLog(`Vos ordres : `, 10, () => {
-                process.stdin.resume();//réactiver l'entrée à la fin du log
+                vosOrdres();
             });
         });
     }
@@ -339,7 +339,7 @@ function processOrdre (d) {
         process.stdin.pause(); //stopper l'entrée
         slowLog(suite, 10, () => {
             slowLog(`Vos ordres : `, 10, () => {
-                process.stdin.resume();//réactiver l'entrée à la fin du log
+                vosOrdres();
             });
         });
     }
@@ -349,7 +349,7 @@ function processOrdre (d) {
         process.stdin.pause(); //stopper l'entrée
         slowLog(suite, 10, () => {
             slowLog(`Vos ordres : `, 10, () => {
-                process.stdin.resume();//réactiver l'entrée à la fin du log
+                vosOrdres();
             });
         });
     }
@@ -365,7 +365,7 @@ function processOrdre (d) {
         process.stdin.pause(); //stopper l'entrée
         slowLog(suite, 10, () => {
             slowLog(`Vos ordres : `, 10, () => {
-                process.stdin.resume();//réactiver l'entrée à la fin du log
+                vosOrdres();
             });
         });
     }
@@ -374,7 +374,7 @@ function processOrdre (d) {
         process.stdin.pause(); //stopper l'entrée
         slowLog(suite, 10, () => {
             slowLog(`Vos ordres : `, 10, () => {
-                process.stdin.resume();//réactiver l'entrée à la fin du log
+                vosOrdres();
             });
         });
     }
@@ -383,7 +383,7 @@ function processOrdre (d) {
         process.stdin.pause(); //stopper l'entrée
         slowLog(suite, 10, () => {
             slowLog(`Vos ordres : `, 10, () => {
-                process.stdin.resume();//réactiver l'entrée à la fin du log
+                vosOrdres();
             });
         });
     }
@@ -392,7 +392,7 @@ function processOrdre (d) {
         process.stdin.pause(); //stopper l'entrée
         slowLog(suite, 10, () => {
             slowLog(`Vos ordres : `, 10, () => {
-                process.stdin.resume();//réactiver l'entrée à la fin du log
+                vosOrdres();
             });
         });
     }
@@ -401,7 +401,7 @@ function processOrdre (d) {
         process.stdin.pause(); //stopper l'entrée
         slowLog(suite, 10, () => {
             slowLog(`Vos ordres : `, 10, () => {
-                process.stdin.resume();//réactiver l'entrée à la fin du log
+                vosOrdres();
             });
         });
     }
@@ -410,7 +410,7 @@ function processOrdre (d) {
         process.stdin.pause(); //stopper l'entrée
         slowLog(suite, 10, () => {
             slowLog(`Vos ordres : `, 10, () => {
-                process.stdin.resume();//réactiver l'entrée à la fin du log
+                vosOrdres();
             });
         });
     }
@@ -419,7 +419,7 @@ function processOrdre (d) {
         process.stdin.pause(); //stopper l'entrée
         slowLog(suite, 10, () => {
             slowLog(`Vos ordres : `, 10, () => {
-                process.stdin.resume();//réactiver l'entrée à la fin du log
+                vosOrdres();
             });
         });
     }
@@ -428,7 +428,7 @@ function processOrdre (d) {
         process.stdin.pause(); //stopper l'entrée
         slowLog(suite, 10, () => {
             slowLog(`Vos ordres : `, 10, () => {
-                process.stdin.resume();//réactiver l'entrée à la fin du log
+                vosOrdres();
             });
         });
     }
@@ -437,7 +437,7 @@ function processOrdre (d) {
         process.stdin.pause(); //stopper l'entrée
         slowLog(suite, 10, () => {
             slowLog(`Vos ordres : `, 10, () => {
-                process.stdin.resume();//réactiver l'entrée à la fin du log
+                vosOrdres();
             });
         });
     }
@@ -451,7 +451,7 @@ function processOrdre (d) {
         process.stdin.pause(); //stopper l'entrée
         slowLog(suite, 10, () => {
             slowLog(`Vos ordres : `, 10, () => {
-                process.stdin.resume();//réactiver l'entrée à la fin du log
+                vosOrdres();
             });
         });
     }
@@ -465,7 +465,7 @@ function processOrdre (d) {
         process.stdin.pause(); //stopper l'entrée
         slowLog(suite, 10, () => {
             slowLog(`Vos ordres : `, 10, () => {
-                process.stdin.resume();//réactiver l'entrée à la fin du log
+                vosOrdres();
             });
         });
     }
@@ -479,7 +479,7 @@ function processOrdre (d) {
         process.stdin.pause(); //stopper l'entrée
         slowLog(suite, 10, () => {
             slowLog(`Vos ordres : `, 10, () => {
-                process.stdin.resume();//réactiver l'entrée à la fin du log
+                vosOrdres();
             });
         });
     }
@@ -493,7 +493,7 @@ function processOrdre (d) {
         process.stdin.pause(); //stopper l'entrée
         slowLog(suite, 10, () => {
             slowLog(`Vos ordres : `, 10, () => {
-                process.stdin.resume();//réactiver l'entrée à la fin du log
+                vosOrdres();
             });
         });
     }
@@ -502,7 +502,7 @@ function processOrdre (d) {
         process.stdin.pause(); //stopper l'entrée
         slowLog(suite, 10, () => {
             slowLog(`Vos ordres : `, 10, () => {
-                process.stdin.resume();//réactiver l'entrée à la fin du log
+                vosOrdres();
             });
         });
     }
@@ -511,7 +511,7 @@ function processOrdre (d) {
         process.stdin.pause(); //stopper l'entrée
         slowLog(suite, 10, () => {
             slowLog(`Vos ordres : `, 10, () => {
-                process.stdin.resume();//réactiver l'entrée à la fin du log
+                vosOrdres();
             });
         });
     }
@@ -522,7 +522,7 @@ function processOrdre (d) {
         process.stdin.pause(); //stopper l'entrée
         slowLog(suite, 10, () => {
             slowLog(`Vos ordres : `, 10, () => {
-                process.stdin.resume();//réactiver l'entrée à la fin du log
+                vosOrdres();
             });
         });
     }
@@ -532,26 +532,30 @@ function processOrdre (d) {
         process.stdin.pause(); //stopper l'entrée
         slowLog(suite, 10, () => {
             slowLog(`Vos ordres : `, 10, () => {
-                process.stdin.resume();//réactiver l'entrée à la fin du log
+                vosOrdres();
             });
         });
     }
 
-    if (rep == "FAIRE DES BEBES" && bowser.health <= 0 && bowser_jr.health <= 0 && king_boo.health <= 0 && joueur.x == 0 && joueur.y == 0) {
+    if (rep == "FAIRE DES BEBES" &&
+    bowser.health <= 0 &&
+    bowser_jr.health <= 0 &&
+    king_boo.health <= 0 &&
+    joueur.x == 0 &&
+    joueur.y == 0) {
         console.log("Vous retournez au château et lui faites l'amour comme une bête ! Marriiiioooooooooo !!!!!");
         process.exit();
         process.stdin.pause(); //stopper l'entrée
         slowLog(suite, 10, () => {
             slowLog(`Vos ordres : `, 10, () => {
-                process.stdin.resume();//réactiver l'entrée à la fin du log
+                vosOrdres();
             });
         });
     }
+
     if (rep == "QUIT") {
         process.exit();
     }
-
-    console.log('Rien compris')
 }
 
 /* début du script ici */
@@ -578,7 +582,7 @@ App.logTitle();
 //Début du jeu
 slowLog(intro, 1, () => {
     slowLog(rules, 1, () => {
-        // process.stdin.resume(); //réactiver l'entrée
+        // vosOrdres(); //réactiver l'entrée
         vosOrdres()
     });
 });

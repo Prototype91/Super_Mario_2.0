@@ -24,11 +24,11 @@ for (let y = 0; y < tbl.length; y++) {
         if (x === player.x && y === player.y)
             line += chalk.cyan(' * ')
         else if (ennemies.includes(tbl[y][x]))
-            line += ' ' + chalk.red(tbl[y][x]) + ' '
+            line += '  ' + chalk.red(tbl[y][x]) + '  '
         else if (tbl[y][x] === 'P')
-            line += ' ' + chalk.magenta(tbl[y][x]) + ' '
+            line += '  ' + chalk.magenta(tbl[y][x]) + '  '
         else
-            line += ' ' + tbl[y][x] + ' '
+            line += '  ' + tbl[y][x] + '  '
 
     }
     console.log(line)
