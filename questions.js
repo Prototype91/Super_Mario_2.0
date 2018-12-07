@@ -1,12 +1,20 @@
+const inquirer = require('inquirer')
+
 module.exports = [
     {
         type: 'list',
-        name: 'question_2',
-        message: 'Si dans une course je double le 2ème, je suis :',
+        name: 'Orientation',
+        message: 'Que souhaitez-vous faire ?',
         choices: [
-            'Le premier',
-            'Le deuxième',
-            'Le troisième'
+            { name: 'Déplacement Nord', value: 'N'},
+            { name: 'Déplacement Sud', value: 'S'},
+            { name: 'Déplacement Est', value: 'E' },
+            { name: 'Déplacement Ouest', value: 'O' },
+            new inquirer.Separator('-- Déplacements latéraux --'),
+            { name: 'Déplacement Nord-Est', value: 'NE' },
+            { name: 'Déplacement Nord-Ouest', value: 'NO' },
+            { name: 'Déplacement Sud-Est', value: 'SE' },
+            { name: 'Déplacement Sud-Ouest', value: 'SO' },
         ]
     }
 ]

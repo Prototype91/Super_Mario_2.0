@@ -1,4 +1,4 @@
-module.exports = bowser_jr = {
+module.exports = {
     name: "Bowser Jr.",
     health: 100,
     attack: 10,

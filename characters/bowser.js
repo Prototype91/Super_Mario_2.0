@@ -1,4 +1,4 @@
-module.exports = bowser = {
+module.exports = {
     name: "Bowser",
     health: 180,
     attack: 20,

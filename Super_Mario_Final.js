@@ -215,7 +215,7 @@ function Attack(attacker, defencer) {
         console.log("GAME OVER");
         process.exit();
     }
-}
+};
 
 //Ramasser un équipement
 function grab_equipment(equipment) {
@@ -252,16 +252,33 @@ function equip(equipment) {
     }
 };
 
+function vosOrdres() {
+    return inquirer.prompt(questions)
+        .then(reponse => reponse.Orientation)
+        // .then(function(reponse) {
+        //     return reponse.Orientation;
+        // })
+        .then(rep => processOrdre(rep))
+}
+
+
+
+
+
+
+
+
+
 //A chaque entrée dans la console, on appellera la fonction fléchée, rep sera la réponse tapée dans la console
 //Ici on déclare ce que l'on fera lorsqu'on recevra une donnée
-process.stdin.on('data', (d) => {
+function processOrdre (d) {
     let rep = d.toString().trim()
     if (rep == "N") {
         go("N");
         process.stdin.pause(); //stopper l'entrée
         slowLog(suite, 10, () => {
             slowLog(`Vos ordres : `, 10, () => {
-                process.stdin.resume();//réactiver l'entrée à la fin du log
+                vosOrdres();//réactiver l'entrée à la fin du log
             });
         });
     }
@@ -509,6 +526,7 @@ process.stdin.on('data', (d) => {
             });
         });
     }
+
     if (rep.substr(0, 1).toUpperCase() != rep.substr(0, 1)) {
         console.log('Mario ne comprend pas quand tu lui parles avec des espaces et des lettres minuscules ! Apprends à lire mon petit !');
         process.stdin.pause(); //stopper l'entrée
@@ -532,14 +550,36 @@ process.stdin.on('data', (d) => {
     if (rep == "QUIT") {
         process.exit();
     }
-});
+
+    console.log('Rien compris')
+}
 
 /* début du script ici */
 process.stdin.pause(); //stopper l'entrée pour ne pas pirater le texte
 
+//Logo introductif
+const App = {
+    title: figlet.textSync('Super Mario v2.0', {
+        font: 'Ghost'
+    }),
+    seond_title: figlet.textSync('by Protoxyde91', 'Ogre'),
+    logTitle: function () {
+        clear();
+        console.log(chalk.yellow(this.title));
+        console.log(chalk.red(this.seond_title));
+        console.log('\n');
+    }
+}
 
+App.logTitle();
+
+
+
+//Début du jeu
 slowLog(intro, 1, () => {
     slowLog(rules, 1, () => {
-        process.stdin.resume(); //réactiver l'entrée
+        // process.stdin.resume(); //réactiver l'entrée
+        vosOrdres()
     });
 });
+

@@ -1,5 +1,5 @@
 //Création de la map du jeu
-module.exports = map = [
+module.exports = [
     ['P', 'J', '9', '2', '1'],
     ['B', '_', '_', '_', 'L'],
     ['2', '_', '2', 'N', '_'],

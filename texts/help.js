@@ -1,4 +1,6 @@
-module.exports = help = `
+const chalk = require('chalk');
+
+module.exports = help = chalk.cyan(`
 Pour la sauver, vous devez parcourir la map, trouver son emplacement et battre les 3 Boss (Bowser, Roi Boo et Bowser Jr.)
         
 Choisissez une direction : 
@@ -17,4 +19,4 @@ Vous pouvez également afficher l'inventaire en tapant INVENTAIRE et vos stats e
 
 Vos instructions doivent impérativement être écrites avec des lettres MAJUSCULES et sans ESPACES !
 Activez donc la touche MAJ de votre clavier !
-            `;
+`);

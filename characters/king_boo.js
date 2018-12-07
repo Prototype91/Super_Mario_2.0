@@ -1,4 +1,4 @@
-module.exports = king_boo = {
+module.exports =  {
     name: "Roi Boo",
     health: 100,
     attack: 9,
