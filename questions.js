@@ -7,6 +7,9 @@ module.exports = [
         message: 'Que souhaitez-vous faire ?',
         choices: [
 
+            new inquirer.Separator('-- MAP --'),
+            { name: 'Afficher la carte', value: 'MAP' },
+
             new inquirer.Separator('-- DÉPLACEMENT NORMAUX --'),
             { name: 'Déplacement Nord', value: 'N'},
             { name: 'Déplacement Sud', value: 'S'},
@@ -19,6 +22,9 @@ module.exports = [
             { name: 'Déplacement Sud-Est', value: 'SE' },
             { name: 'Déplacement Sud-Ouest', value: 'SO' },
 
+            new inquirer.Separator('-- COMBATS --'),
+            { name: 'Attaquer', value: 'ATTAQUER' },
+
             new inquirer.Separator('-- SANTÉ --'),
             { name: 'Manger', value: 'MANGER' },
             { name: 'Boire', value: 'BOIRE' },
@@ -28,9 +34,6 @@ module.exports = [
             { name: 'Équiper', value: 'EQUIP' },
             { name: 'Inventaire', value: 'INVENTAIRE' },
 
-            new inquirer.Separator('-- COMBATS --'),
-            { name: 'Attaquer', value: 'ATTAQUER' },
-    
             new inquirer.Separator('-- AUTRE --'),
             { name: 'Aides du jeu', value: 'HELP' },
             { name: 'Statistiques', value: 'STATS' },

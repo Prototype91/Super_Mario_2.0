@@ -8,6 +8,7 @@ const chalk = require('chalk');
 const inquirer = require('inquirer');
 
 const questions = require('./questions');
+const afficher_map = require('./afficherTbl')
 
 
 //Fonction slowLog
@@ -43,7 +44,7 @@ let current_equipment = [];
 
 //Position initiale du Joueur
 //y = map[] et x = [][]
-let joueur = {
+module.exports = joueur = {
     x: 2,
     y: 7
 };
@@ -416,6 +417,15 @@ function processOrdre (d) {
     }
     if (rep == "INVENTAIRE") {
         show_inventaire();
+        process.stdin.pause(); //stopper l'entrée
+        slowLog(suite, 10, () => {
+            slowLog(`Vos ordres : `, 10, () => {
+                vosOrdres();
+            });
+        });
+    }
+    if (rep == "MAP") {
+        afficher_map()
         process.stdin.pause(); //stopper l'entrée
         slowLog(suite, 10, () => {
             slowLog(`Vos ordres : `, 10, () => {
