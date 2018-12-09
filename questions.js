@@ -34,6 +34,11 @@ module.exports = [
             { name: 'Équiper', value: 'EQUIP' },
             { name: 'Inventaire', value: 'INVENTAIRE' },
 
+            new inquirer.Separator('-- CHOIX --'),
+            { name: 'Oui', value: 'OUI' },
+            { name: 'Non', value: 'NON' },
+            { name: 'Faire des Bébés', value: 'FAIRE DES BEBES' },
+
             new inquirer.Separator('-- AUTRE --'),
             { name: 'Aides du jeu', value: 'HELP' },
             { name: 'Statistiques', value: 'STATS' },

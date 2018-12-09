@@ -311,7 +311,8 @@ function processOrdre (d) {
                 vosOrdres();
             });
         });
-    }
+    } else if(rep == "BOIRE") console.log(chalk.red("Impossible d'effectuer cette action pour le moment !\n")), vosOrdres();
+
     if (rep == "MANGER" && ((joueur.x == 2 && joueur.y == 0) || (joueur.x == 4 && joueur.y == 6))) {
         mario.attack += 10;
         mario.armure += 1;
@@ -324,7 +325,8 @@ function processOrdre (d) {
                 vosOrdres();
             });
         });
-    }
+    } else if(rep == "MANGER") console.log(chalk.red("Impossible d'effectuer cette action pour le moment !\n")), vosOrdres();
+
     if (rep == "O") {
         go("O");
         process.stdin.pause(); //stopper l'entrée
@@ -343,7 +345,7 @@ function processOrdre (d) {
                 vosOrdres();
             });
         });
-    }
+    } else if(rep == "OUI") console.log(chalk.red("Impossible d'effectuer cette action pour le moment !\n")), vosOrdres();
     //Réponse du joueur aux toilettes :
     if (rep == "NON" && (joueur.x == 3 && joueur.y == 2)) {
         console.log("Mario se contente d'admirer le trône...");
@@ -369,7 +371,7 @@ function processOrdre (d) {
                 vosOrdres();
             });
         });
-    }
+    } else if(rep == "NON") console.log(chalk.red("Impossible d'effectuer cette action pour le moment !\n")), vosOrdres();
     if (rep == "NE") {
         go("NE");
         process.stdin.pause(); //stopper l'entrée
@@ -441,7 +443,7 @@ function processOrdre (d) {
                 vosOrdres();
             });
         });
-    }
+    } else if(rep == "RAMASSER") console.log(chalk.red("Impossible d'effectuer cette action pour le moment !\n")), vosOrdres();
     if (rep == "EQUIP" && joueur.x == 3 && joueur.y == 6) {
         equip(hammer);
         process.stdin.pause(); //stopper l'entrée
@@ -464,7 +466,8 @@ function processOrdre (d) {
                 vosOrdres();
             });
         });
-    }
+    } else if(rep == "ATTAQUER") console.log(chalk.red("Impossible d'effectuer cette action pour le moment !\n")), vosOrdres();
+
     if (rep == "ATTAQUER" && (joueur.x == 1 && joueur.y == 0)) {
         if (bowser_jr.health > 0) {
             Attack(bowser_jr, mario);
@@ -515,7 +518,7 @@ function processOrdre (d) {
                 vosOrdres();
             });
         });
-    }
+    } else if(rep == "EQUIP") console.log(chalk.red("Impossible d'effectuer cette action pour le moment !\n")), vosOrdres();
     if (rep == "RAMASSER" && joueur.x == 3 && joueur.y == 4) {
         grab_equipment(sword);
         process.stdin.pause(); //stopper l'entrée
@@ -561,7 +564,7 @@ function processOrdre (d) {
                 vosOrdres();
             });
         });
-    }
+    } else if(rep == "FAIRE DES BEBES") console.log(chalk.red("Impossible d'effectuer cette action pour le moment !\n")), vosOrdres();
 
     if (rep == "QUIT") {
         process.exit();
