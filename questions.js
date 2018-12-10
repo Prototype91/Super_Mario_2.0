@@ -1,14 +1,15 @@
-const inquirer = require('inquirer')
+const inquirer = require('inquirer');
+const chalk = require('chalk');
 
 module.exports = [
     {
         type: 'list',
         name: 'Orientation',
-        message: 'Que souhaitez-vous faire ?',
+        message: chalk.cyan('Que souhaitez-vous faire ?'),
         choices: [
 
             new inquirer.Separator('-- MAP --'),
-            { name: 'Afficher la carte', value: 'MAP' },
+            { name: 'Afficher la carte (Bonus)', value: 'MAP' },
 
             new inquirer.Separator('-- DÉPLACEMENT NORMAUX --'),
             { name: 'Déplacement Nord', value: 'N'},
@@ -30,7 +31,7 @@ module.exports = [
             { name: 'Boire', value: 'BOIRE' },
 
             new inquirer.Separator('-- OBJETS --'),
-            { name: 'Ramasser', value: 'BOIRE' },
+            { name: 'Ramasser', value: 'RAMASSER' },
             { name: 'Équiper', value: 'EQUIP' },
             { name: 'Inventaire', value: 'INVENTAIRE' },
 

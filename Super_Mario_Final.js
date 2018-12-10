@@ -8,7 +8,7 @@ const chalk = require('chalk');
 const inquirer = require('inquirer');
 
 const questions = require('./questions');
-const afficher_map = require('./afficherTbl')
+const afficher_map = require('./afficherMap')
 
 
 //Fonction slowLog
@@ -135,7 +135,7 @@ function go(direction) {
             break;
         case "P":
             if (bowser.health <= 0 && bowser_jr.health <= 0 && king_boo.health <= 0 && joueur.x <= 0 && joueur.y <= 0) {
-                console.log("Bravo vous avez sauvez la princesse (.)(.) Tapez FAIRE DES BEBES pour lui faire l'amour ou QUIT pour la laisser.");
+                console.log("Bravo vous avez sauvez la princesse (.)(.) Tapez FAIRE DES BEBES pour lui faire l'amour ou QUITTER LE JEU pour la laisser.");
             } else {
                 console.log("Vous avez trouvé la princesse mais elle semble être enfermée. Battez les 3 Boss !");
             }
@@ -213,7 +213,7 @@ function Attack(attacker, defencer) {
     }
     if (mario.health <= 0) {
         console.log("Mario est vaincu, la princesse ne sera jamais sauvée...")
-        console.log("GAME OVER");
+        console.log(chalk.red(figlet.textSync('Game Over', 'Ogre')));
         process.exit();
     }
 };
@@ -254,6 +254,7 @@ function equip(equipment) {
 };
 
 function vosOrdres() {
+    /*console.log(joueur.x + ";" + joueur.y);*/
     return inquirer.prompt(questions)
         .then(reponse => reponse.Orientation)
         // .then(function(reponse) {
@@ -262,23 +263,10 @@ function vosOrdres() {
         .then(rep => processOrdre(rep))
 }
 
-
-
-
-
-
-
-
-
 //A chaque entrée dans la console, on appellera la fonction fléchée, rep sera la réponse tapée dans la console
 //Ici on déclare ce que l'on fera lorsqu'on recevra une donnée
-function processOrdre (d) {
+function processOrdre(d) {
     let rep = d.toString().trim()
-    /*if(rep == "ATTAQUER" && 
-    ((joueur.x =! 4 && joueur.y != 4) && (joueur.x =! 1 && joueur.y != 0) && (joueur.x != 0 && joueur.y != 1) && (joueur.x != 2 && joueur.y != 6))){
-        console.log(chalk.red("Impossible d'effectuer cette action pour le moment !\n"));
-        vosOrdres();
-    } */
 
     if (rep == "N") {
         go("N");
@@ -317,7 +305,7 @@ function processOrdre (d) {
                 vosOrdres();
             });
         });
-    } else if(rep == "BOIRE") console.log(chalk.red("Impossible d'effectuer cette action pour le moment !\n")), vosOrdres();
+    } else if (rep == "BOIRE") console.log(chalk.red("Impossible d'effectuer cette action pour le moment !\n")), vosOrdres();
 
     if (rep == "MANGER" && ((joueur.x == 2 && joueur.y == 0) || (joueur.x == 4 && joueur.y == 6))) {
         mario.attack += 10;
@@ -331,7 +319,7 @@ function processOrdre (d) {
                 vosOrdres();
             });
         });
-    } else if(rep == "MANGER") console.log(chalk.red("Impossible d'effectuer cette action pour le moment !\n")), vosOrdres();
+    } else if (rep == "MANGER") console.log(chalk.red("Impossible d'effectuer cette action pour le moment !\n")), vosOrdres();
 
     if (rep == "O") {
         go("O");
@@ -351,7 +339,7 @@ function processOrdre (d) {
                 vosOrdres();
             });
         });
-    } else if(rep == "OUI") console.log(chalk.red("Impossible d'effectuer cette action pour le moment !\n")), vosOrdres();
+    } else if (rep == "OUI") console.log(chalk.red("Impossible d'effectuer cette action pour le moment !\n")), vosOrdres();
     //Réponse du joueur aux toilettes :
     if (rep == "NON" && (joueur.x == 3 && joueur.y == 2)) {
         console.log("Mario se contente d'admirer le trône...");
@@ -377,7 +365,7 @@ function processOrdre (d) {
                 vosOrdres();
             });
         });
-    } else if(rep == "NON") console.log(chalk.red("Impossible d'effectuer cette action pour le moment !\n")), vosOrdres();
+    } else if (rep == "NON") console.log(chalk.red("Impossible d'effectuer cette action pour le moment !\n")), vosOrdres();
     if (rep == "NE") {
         go("NE");
         process.stdin.pause(); //stopper l'entrée
@@ -433,7 +421,12 @@ function processOrdre (d) {
         });
     }
     if (rep == "MAP") {
-        afficher_map()
+        console.log(chalk.green(figlet.textSync('Map du Jeu :', 'Ogre')));
+        afficher_map();
+        console.log(chalk.cyan('Vous êtes W ...'));
+        console.log(chalk.green("A vous d'explorer la Map et de découvrir à quoi correspondent ces Caractères mystèrieux !"));
+        console.log(chalk.green("Cette carte reste un BONUS à ne pas abusé :)"));
+        console.log(chalk.green("Bonne chance !"));
         process.stdin.pause(); //stopper l'entrée
         slowLog(suite, 10, () => {
             slowLog(`Vos ordres : `, 10, () => {
@@ -449,7 +442,7 @@ function processOrdre (d) {
                 vosOrdres();
             });
         });
-    } else if(rep == "RAMASSER") console.log(chalk.red("Impossible d'effectuer cette action pour le moment !\n")), vosOrdres();
+    } else if (rep == "RAMASSER") console.log(chalk.red("Impossible d'effectuer cette action pour le moment !\n")), vosOrdres();
     if (rep == "EQUIP" && joueur.x == 3 && joueur.y == 6) {
         equip(hammer);
         process.stdin.pause(); //stopper l'entrée
@@ -460,7 +453,7 @@ function processOrdre (d) {
         });
     }
 
-    
+
     if (rep == "ATTAQUER" && (joueur.x == 4 && joueur.y == 4)) {
         if (king_boo.health > 0) {
             Attack(king_boo, mario);
@@ -474,7 +467,7 @@ function processOrdre (d) {
                 vosOrdres();
             });
         });
-    } 
+    }
 
     if (rep == "ATTAQUER" && (joueur.x == 1 && joueur.y == 0)) {
         if (bowser_jr.health > 0) {
@@ -488,8 +481,8 @@ function processOrdre (d) {
             slowLog(`Vos ordres : `, 10, () => {
                 vosOrdres();
             });
-        }); 
-        }    if (rep == "ATTAQUER" && (joueur.x == 0 && joueur.y == 1)) {
+        });
+    } if (rep == "ATTAQUER" && (joueur.x == 0 && joueur.y == 1)) {
         if (bowser.health > 0) {
             Attack(bowser, mario);
             Attack(mario, bowser);
@@ -516,7 +509,17 @@ function processOrdre (d) {
                 vosOrdres();
             });
         });
-    } 
+    }
+
+    /*if ((rep === "ATTAQUER" && joueur.x !==4 && joueur.y !==4) ||
+        (rep === "ATTAQUER" && joueur.x !==1 && joueur.y !==0) ||
+        (rep === "ATTAQUER" && joueur.x !==0 && joueur.y !==1) ||
+        (rep === "ATTAQUER" && joueur.x !==2 && joueur.y !==6)){
+        console.log(chalk.red("Impossible d'effectuer cette action pour le moment !\n"));
+        vosOrdres();
+    }*/
+
+
     if (rep == "EQUIP" && joueur.x == 3 && joueur.y == 4) {
         equip(sword);
         process.stdin.pause(); //stopper l'entrée
@@ -525,7 +528,7 @@ function processOrdre (d) {
                 vosOrdres();
             });
         });
-    } else if(rep == "EQUIP") console.log(chalk.red("Impossible d'effectuer cette action pour le moment !\n")), vosOrdres();
+    } else if (rep == "EQUIP") console.log(chalk.red("Impossible d'effectuer cette action pour le moment !\n")), vosOrdres();
     if (rep == "RAMASSER" && joueur.x == 3 && joueur.y == 4) {
         grab_equipment(sword);
         process.stdin.pause(); //stopper l'entrée
@@ -558,11 +561,11 @@ function processOrdre (d) {
     }
 
     if (rep == "FAIRE DES BEBES" &&
-    bowser.health <= 0 &&
-    bowser_jr.health <= 0 &&
-    king_boo.health <= 0 &&
-    joueur.x == 0 &&
-    joueur.y == 0) {
+        bowser.health <= 0 &&
+        bowser_jr.health <= 0 &&
+        king_boo.health <= 0 &&
+        joueur.x == 0 &&
+        joueur.y == 0) {
         console.log("Vous retournez au château et lui faites l'amour comme une bête ! Marriiiioooooooooo !!!!!");
         process.exit();
         process.stdin.pause(); //stopper l'entrée
@@ -571,9 +574,10 @@ function processOrdre (d) {
                 vosOrdres();
             });
         });
-    } else if(rep == "FAIRE DES BEBES") console.log(chalk.red("Impossible d'effectuer cette action pour le moment !\n")), vosOrdres();
+    } else if (rep == "FAIRE DES BEBES") console.log(chalk.red("Impossible d'effectuer cette action pour le moment !\n")), vosOrdres();
 
     if (rep == "QUIT") {
+        console.log(chalk.red(figlet.textSync('Game Over', 'Ogre')))
         process.exit();
     }
 }
@@ -586,18 +590,16 @@ const App = {
     title: figlet.textSync('Super Mario v2.0', {
         font: 'Ghost'
     }),
-    seond_title: figlet.textSync('by Protoxyde91', 'Ogre'),
+    /*second_title: figlet.textSync('by Protoxyde91', 'Ogre'),*/
     logTitle: function () {
         clear();
         console.log(chalk.yellow(this.title));
-        console.log(chalk.red(this.seond_title));
+        /*console.log(chalk.red(this.second_title));*/
         console.log('\n');
     }
 }
 
 App.logTitle();
-
-
 
 //Début du jeu
 slowLog(intro, 1, () => {

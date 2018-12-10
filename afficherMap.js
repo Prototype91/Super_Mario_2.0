@@ -22,7 +22,7 @@ module.exports = function afficher_map() {
             for (let x = 0; x < tbl[y].length; x++) {
 
                 if (x === joueur.x && y === joueur.y)
-                    line += chalk.cyan(' * ');
+                    line += chalk.cyan('  W  ');
                 else if (ennemies.includes(tbl[y][x]))
                     line += '  ' + chalk.red(tbl[y][x]) + '  ';
                 else if (tbl[y][x] === 'P')
