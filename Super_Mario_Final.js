@@ -274,6 +274,12 @@ function vosOrdres() {
 //Ici on déclare ce que l'on fera lorsqu'on recevra une donnée
 function processOrdre (d) {
     let rep = d.toString().trim()
+    /*if(rep == "ATTAQUER" && 
+    ((joueur.x =! 4 && joueur.y != 4) && (joueur.x =! 1 && joueur.y != 0) && (joueur.x != 0 && joueur.y != 1) && (joueur.x != 2 && joueur.y != 6))){
+        console.log(chalk.red("Impossible d'effectuer cette action pour le moment !\n"));
+        vosOrdres();
+    } */
+
     if (rep == "N") {
         go("N");
         process.stdin.pause(); //stopper l'entrée
@@ -453,6 +459,8 @@ function processOrdre (d) {
             });
         });
     }
+
+    
     if (rep == "ATTAQUER" && (joueur.x == 4 && joueur.y == 4)) {
         if (king_boo.health > 0) {
             Attack(king_boo, mario);
@@ -466,7 +474,7 @@ function processOrdre (d) {
                 vosOrdres();
             });
         });
-    } else if(rep == "ATTAQUER") console.log(chalk.red("Impossible d'effectuer cette action pour le moment !\n")), vosOrdres();
+    } 
 
     if (rep == "ATTAQUER" && (joueur.x == 1 && joueur.y == 0)) {
         if (bowser_jr.health > 0) {
@@ -480,9 +488,8 @@ function processOrdre (d) {
             slowLog(`Vos ordres : `, 10, () => {
                 vosOrdres();
             });
-        });
-    }
-    if (rep == "ATTAQUER" && (joueur.x == 0 && joueur.y == 1)) {
+        }); 
+        }    if (rep == "ATTAQUER" && (joueur.x == 0 && joueur.y == 1)) {
         if (bowser.health > 0) {
             Attack(bowser, mario);
             Attack(mario, bowser);
@@ -495,7 +502,7 @@ function processOrdre (d) {
                 vosOrdres();
             });
         });
-    }
+    };
     if (rep == "ATTAQUER" && (joueur.x == 2 && joueur.y == 6)) {
         if (taupe.health > 0) {
             Attack(taupe, mario);
@@ -509,7 +516,7 @@ function processOrdre (d) {
                 vosOrdres();
             });
         });
-    }
+    } 
     if (rep == "EQUIP" && joueur.x == 3 && joueur.y == 4) {
         equip(sword);
         process.stdin.pause(); //stopper l'entrée
