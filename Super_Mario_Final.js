@@ -52,7 +52,6 @@ module.exports = joueur = {
 function playerIsHere(posx, posy) {
     if (posx == joueur.x) {
         if (posy == joueur.y) {
-            console.log(posx, posy);
             return true;
         } else {
             return false
@@ -266,7 +265,7 @@ function equip(equipment) {
 };
 
 function vosOrdres() {
-    console.log(joueur.x + ";" + joueur.y);
+    /*console.log(joueur.x + ";" + joueur.y);*/
     return inquirer.prompt(questions)
         .then(reponse => reponse.Orientation)
         // .then(function(reponse) {
