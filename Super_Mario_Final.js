@@ -49,6 +49,18 @@ module.exports = joueur = {
     y: 7
 };
 
+function playerIsHere(posx, posy) {
+    if (posx == joueur.x) {
+        if (posy == joueur.y) {
+            console.log(posx, posy);
+            return true;
+        } else {
+            return false
+        }
+    } else {
+        return false
+    }
+};
 //Direction = N, NE, NO, E, W, SE, ou SO
 function go(direction) {
 
@@ -254,7 +266,7 @@ function equip(equipment) {
 };
 
 function vosOrdres() {
-    /*console.log(joueur.x + ";" + joueur.y);*/
+    console.log(joueur.x + ";" + joueur.y);
     return inquirer.prompt(questions)
         .then(reponse => reponse.Orientation)
         // .then(function(reponse) {
@@ -511,13 +523,13 @@ function processOrdre(d) {
         });
     }
 
-    /*if ((rep === "ATTAQUER" && joueur.x !==4 && joueur.y !==4) ||
-        (rep === "ATTAQUER" && joueur.x !==1 && joueur.y !==0) ||
-        (rep === "ATTAQUER" && joueur.x !==0 && joueur.y !==1) ||
-        (rep === "ATTAQUER" && joueur.x !==2 && joueur.y !==6)){
-        console.log(chalk.red("Impossible d'effectuer cette action pour le moment !\n"));
-        vosOrdres();
-    }*/
+    if(rep == "ATTAQUER"){
+        /*console.log(joueur.x, joueur.y)*/
+        if(playerIsHere(2,6) == false && playerIsHere(4, 4) == false && playerIsHere(1,0) == false && playerIsHere(0,1) == false){
+            console.log(chalk.red("Impossible d'effectuer cette action pour le moment !\n"));
+            vosOrdres();
+        }
+    }
 
 
     if (rep == "EQUIP" && joueur.x == 3 && joueur.y == 4) {

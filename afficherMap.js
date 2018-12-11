@@ -10,11 +10,11 @@ module.exports = function afficher_map() {
             ['1', '_', '_', '_', '1'],
         ];
 
-        const ennemies = ['B', 'J', 'O', 'T']
+        const ennemies = ['B', 'J', 'O', 'T'];
 
-        const joueur = require("./Super_Mario_Final")
+        const joueur = require("./Super_Mario_Final");
 
-        const chalk = require('chalk')
+        const chalk = require('chalk');
 
         console.log('\n')
         for (let y = 0; y < tbl.length; y++) {
