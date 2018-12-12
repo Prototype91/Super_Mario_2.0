@@ -49,6 +49,7 @@ module.exports = joueur = {
     y: 7
 };
 
+/*Création d'une fonction qui permet de vérifier la position du joueur*/ 
 function playerIsHere(posx, posy) {
     if (posx == joueur.x) {
         if (posy == joueur.y) {
@@ -264,6 +265,7 @@ function equip(equipment) {
     }
 };
 
+//Fonction pour demander au joueur ce qu'il veut faire
 function vosOrdres() {
     /*console.log(joueur.x + ";" + joueur.y);*/
     return inquirer.prompt(questions)
@@ -407,7 +409,7 @@ function processOrdre(d) {
     //Réponse du joueur au bord de la falaise :
     if (rep == "OUI" && (playerIsHere(4, 0) || playerIsHere(4, 7) || playerIsHere(0, 7))) {
         console.log("Mario saute et met fin à ses jours ! RIP Princesse Peach...");
-        console.log("GAME OVER");
+        console.log(chalk.red(figlet.textSync('Game Over', 'Ogre')))
         process.exit();
     }
     if (rep == "OUI") {
@@ -629,6 +631,7 @@ function processOrdre(d) {
         joueur.x == 0 &&
         joueur.y == 0) {
         console.log("Vous retournez au château et lui faites l'amour comme une bête ! Marriiiioooooooooo !!!!!");
+        console.log(chalk.red(figlet.textSync('The End', 'Ogre')))
         process.exit();
         process.stdin.pause(); //stopper l'entrée
         slowLog(suite, 10, () => {
