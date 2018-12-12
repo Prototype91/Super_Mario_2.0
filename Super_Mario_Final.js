@@ -306,32 +306,6 @@ function processOrdre(d) {
             });
         });
     }
-    if (rep == "BOIRE" && ((joueur.x == 0 && joueur.y == 5) || (joueur.x == 4 && joueur.y == 1))) {
-        mario.health += 50;
-        console.log("Vous venez de boire une potion, votre vie = " + mario.health + " PV.");
-        console.log("retournez vite au combat !");
-        process.stdin.pause(); //stopper l'entrée
-        slowLog(suite, 10, () => {
-            slowLog(`Vos ordres : `, 10, () => {
-                vosOrdres();
-            });
-        });
-    } else if (rep == "BOIRE") console.log(chalk.red("Impossible d'effectuer cette action pour le moment !\n")), vosOrdres();
-
-    if (rep == "MANGER" && ((joueur.x == 2 && joueur.y == 0) || (joueur.x == 4 && joueur.y == 6))) {
-        mario.attack += 10;
-        mario.armure += 1;
-        console.log("Vous venez d'avaler un champignon magique ! Vos dégats sont maintenant de " + mario.attack + " points par tour !");
-        console.log("Votre armure vous protège désormais des lancés de dé inférieurs à " + mario.armor + ".");
-        console.log("Retournez vite au combat !");
-        process.stdin.pause(); //stopper l'entrée
-        slowLog(suite, 10, () => {
-            slowLog(`Vos ordres : `, 10, () => {
-                vosOrdres();
-            });
-        });
-    } else if (rep == "MANGER") console.log(chalk.red("Impossible d'effectuer cette action pour le moment !\n")), vosOrdres();
-
     if (rep == "O") {
         go("O");
         process.stdin.pause(); //stopper l'entrée
@@ -341,53 +315,17 @@ function processOrdre(d) {
             });
         });
     }
-    //Réponse du joueur aux toilettes :
-    if (rep == "OUI" && (joueur.x == 3 && joueur.y == 2)) {
-        console.log("Mario pose une mine et se sent plus léger dés à présent !");
-        process.stdin.pause(); //stopper l'entrée
-        slowLog(suite, 10, () => {
-            slowLog(`Vos ordres : `, 10, () => {
-                vosOrdres();
-            });
-        });
-    } else if (rep == "OUI") console.log(chalk.red("Impossible d'effectuer cette action pour le moment !\n")), vosOrdres();
-    //Réponse du joueur aux toilettes :
-    if (rep == "NON" && (joueur.x == 3 && joueur.y == 2)) {
-        console.log("Mario se contente d'admirer le trône...");
-        process.stdin.pause(); //stopper l'entrée
-        slowLog(suite, 10, () => {
-            slowLog(`Vos ordres : `, 10, () => {
-                vosOrdres();
-            });
-        });
-    }
-    //Réponse du joueur au bord de la falaise :
-    if (rep == "OUI" && ((joueur.x == 4 && joueur.y == 0) || (joueur.x == 4 && joueur.y == 7) || (joueur.x == 0 && joueur.y == 7))) {
-        console.log("Mario saute et met fin à ses jours ! RIP Princesse Peach...");
-        console.log("GAME OVER");
-        process.exit();
-    }
-    //Réponse du joueur au bord de la falaise :
-    if (rep == "NON" && ((joueur.x == 4 && joueur.y == 0) || (joueur.x == 4 && joueur.y == 7) || (joueur.x == 0 && joueur.y == 7))) {
-        console.log("Mario se contente d'admirer la vue !");
-        process.stdin.pause(); //stopper l'entrée
-        slowLog(suite, 10, () => {
-            slowLog(`Vos ordres : `, 10, () => {
-                vosOrdres();
-            });
-        });
-    } else if (rep == "NON") console.log(chalk.red("Impossible d'effectuer cette action pour le moment !\n")), vosOrdres();
-    if (rep == "NE") {
-        go("NE");
-        process.stdin.pause(); //stopper l'entrée
-        slowLog(suite, 10, () => {
-            slowLog(`Vos ordres : `, 10, () => {
-                vosOrdres();
-            });
-        });
-    }
     if (rep == "NO") {
         go("NO");
+        process.stdin.pause(); //stopper l'entrée
+        slowLog(suite, 10, () => {
+            slowLog(`Vos ordres : `, 10, () => {
+                vosOrdres();
+            });
+        });
+    }
+    if (rep == "NE") {
+        go("NE");
         process.stdin.pause(); //stopper l'entrée
         slowLog(suite, 10, () => {
             slowLog(`Vos ordres : `, 10, () => {
@@ -413,8 +351,10 @@ function processOrdre(d) {
             });
         });
     }
-    if (rep == "HELP") {
-        console.log(help);
+    if (rep == "BOIRE" && playerIsHere(0, 5) || playerIsHere(4, 1)) {
+        mario.health += 50;
+        console.log("Vous venez de boire une potion, votre vie = " + mario.health + " PV.");
+        console.log("retournez vite au combat !");
         process.stdin.pause(); //stopper l'entrée
         slowLog(suite, 10, () => {
             slowLog(`Vos ordres : `, 10, () => {
@@ -422,8 +362,20 @@ function processOrdre(d) {
             });
         });
     }
-    if (rep == "INVENTAIRE") {
-        show_inventaire();
+    if (rep == "BOIRE") {
+        /*console.log(joueur.x, joueur.y)*/
+        if (playerIsHere(0, 5) == false &&
+            playerIsHere(4, 1) == false) {
+            console.log(chalk.red("Impossible d'effectuer cette action pour le moment !\n"));
+            vosOrdres();
+        }
+    }
+    if (rep == "MANGER" && (playerIsHere(2, 0) || playerIsHere(4, 6))) {
+        mario.attack += 10;
+        mario.armure += 1;
+        console.log("Vous venez d'avaler un champignon magique ! Vos dégats sont maintenant de " + mario.attack + " points par tour !");
+        console.log("Votre armure vous protège désormais des lancés de dé inférieurs à " + mario.armor + ".");
+        console.log("Retournez vite au combat !");
         process.stdin.pause(); //stopper l'entrée
         slowLog(suite, 10, () => {
             slowLog(`Vos ordres : `, 10, () => {
@@ -431,13 +383,19 @@ function processOrdre(d) {
             });
         });
     }
-    if (rep == "MAP") {
-        console.log(chalk.green(figlet.textSync('Map du Jeu :', 'Ogre')));
-        afficher_map();
-        console.log(chalk.cyan('Vous êtes W ...'));
-        console.log(chalk.green("A vous d'explorer la Map et de découvrir à quoi correspondent ces Caractères mystèrieux !"));
-        console.log(chalk.green("Cette carte reste un BONUS à ne pas abusé :)"));
-        console.log(chalk.green("Bonne chance !"));
+    if (rep == "MANGER") {
+        /*console.log(joueur.x, joueur.y)*/
+        if (playerIsHere(2, 0) == false &&
+            playerIsHere(4, 6) == false) {
+            console.log(chalk.red("Impossible d'effectuer cette action pour le moment !\n"));
+            vosOrdres();
+        }
+    }
+
+
+    //Réponse du joueur aux toilettes :
+    if (rep == "OUI" && playerIsHere(3, 2)) {
+        console.log("Mario pose une mine et se sent plus léger dés à présent !");
         process.stdin.pause(); //stopper l'entrée
         slowLog(suite, 10, () => {
             slowLog(`Vos ordres : `, 10, () => {
@@ -445,7 +403,56 @@ function processOrdre(d) {
             });
         });
     }
-    if (rep == "RAMASSER" && joueur.x == 3 && joueur.y == 6) {
+
+    //Réponse du joueur au bord de la falaise :
+    if (rep == "OUI" && (playerIsHere(4, 0) || playerIsHere(4, 7) || playerIsHere(0, 7))) {
+        console.log("Mario saute et met fin à ses jours ! RIP Princesse Peach...");
+        console.log("GAME OVER");
+        process.exit();
+    }
+    if (rep == "OUI") {
+        /*console.log(joueur.x, joueur.y)*/
+        if (playerIsHere(4, 0) == false &&
+            playerIsHere(4, 7) == false &&
+            playerIsHere(0, 7) == false &&
+            playerIsHere(3, 2) == false) {
+            console.log(chalk.red("Impossible d'effectuer cette action pour le moment !\n"));
+            vosOrdres();
+        }
+    }
+
+    //Réponse du joueur au bord de la falaise :
+    if (rep == "NON" && (playerIsHere(4, 0) || playerIsHere(4, 7) || playerIsHere(0, 7))) {
+        console.log("Mario se contente d'admirer la vue !");
+        process.stdin.pause(); //stopper l'entrée
+        slowLog(suite, 10, () => {
+            slowLog(`Vos ordres : `, 10, () => {
+                vosOrdres();
+            });
+        });
+    }
+    if (rep == "NON" && playerIsHere(3, 2)) {
+        console.log("Mario se contente d'admirer le trône...");
+        process.stdin.pause(); //stopper l'entrée
+        slowLog(suite, 10, () => {
+            slowLog(`Vos ordres : `, 10, () => {
+                vosOrdres();
+            });
+        });
+    }
+
+    if (rep == "NON") {
+        /*console.log(joueur.x, joueur.y)*/
+        if (playerIsHere(4, 0) == false &&
+            playerIsHere(4, 7) == false &&
+            playerIsHere(0, 7) == false &&
+            playerIsHere(3, 2) == false) {
+            console.log(chalk.red("Impossible d'effectuer cette action pour le moment !\n"));
+            vosOrdres();
+        }
+    }
+
+    if (rep == "RAMASSER" && playerIsHere(3, 6)) {
         grab_equipment(hammer);
         process.stdin.pause(); //stopper l'entrée
         slowLog(suite, 10, () => {
@@ -453,8 +460,27 @@ function processOrdre(d) {
                 vosOrdres();
             });
         });
-    } else if (rep == "RAMASSER") console.log(chalk.red("Impossible d'effectuer cette action pour le moment !\n")), vosOrdres();
-    if (rep == "EQUIP" && joueur.x == 3 && joueur.y == 6) {
+    }
+    if (rep == "RAMASSER" && playerIsHere(3, 4)) {
+        grab_equipment(sword);
+        process.stdin.pause(); //stopper l'entrée
+        slowLog(suite, 10, () => {
+            slowLog(`Vos ordres : `, 10, () => {
+                vosOrdres();
+            });
+        });
+    }
+
+    if (rep == "RAMASSER") {
+        /*console.log(joueur.x, joueur.y)*/
+        if (playerIsHere(3, 6) == false &&
+            playerIsHere(3, 4) == false) {
+            console.log(chalk.red("Impossible d'effectuer cette action pour le moment !\n"));
+            vosOrdres();
+        }
+    }
+
+    if (rep == "EQUIP" && playerIsHere(3, 6)) {
         equip(hammer);
         process.stdin.pause(); //stopper l'entrée
         slowLog(suite, 10, () => {
@@ -462,6 +488,24 @@ function processOrdre(d) {
                 vosOrdres();
             });
         });
+    }
+    if (rep == "EQUIP" && playerIsHere(3, 4)) {
+        equip(sword);
+        process.stdin.pause(); //stopper l'entrée
+        slowLog(suite, 10, () => {
+            slowLog(`Vos ordres : `, 10, () => {
+                vosOrdres();
+            });
+        });
+    }
+
+    if (rep == "EQUIP") {
+        /*console.log(joueur.x, joueur.y)*/
+        if (playerIsHere(3, 6) == false &&
+            playerIsHere(3, 4) == false) {
+            console.log(chalk.red("Impossible d'effectuer cette action pour le moment !\n"));
+            vosOrdres();
+        }
     }
 
 
@@ -522,26 +566,19 @@ function processOrdre(d) {
         });
     }
 
-    if(rep == "ATTAQUER"){
+    if (rep == "ATTAQUER") {
         /*console.log(joueur.x, joueur.y)*/
-        if(playerIsHere(2,6) == false && playerIsHere(4, 4) == false && playerIsHere(1,0) == false && playerIsHere(0,1) == false){
+        if (playerIsHere(2, 6) == false &&
+            playerIsHere(4, 4) == false &&
+            playerIsHere(1, 0) == false &&
+            playerIsHere(0, 1) == false) {
             console.log(chalk.red("Impossible d'effectuer cette action pour le moment !\n"));
             vosOrdres();
         }
     }
 
-
-    if (rep == "EQUIP" && joueur.x == 3 && joueur.y == 4) {
-        equip(sword);
-        process.stdin.pause(); //stopper l'entrée
-        slowLog(suite, 10, () => {
-            slowLog(`Vos ordres : `, 10, () => {
-                vosOrdres();
-            });
-        });
-    } else if (rep == "EQUIP") console.log(chalk.red("Impossible d'effectuer cette action pour le moment !\n")), vosOrdres();
-    if (rep == "RAMASSER" && joueur.x == 3 && joueur.y == 4) {
-        grab_equipment(sword);
+    if (rep == "HELP") {
+        console.log(help);
         process.stdin.pause(); //stopper l'entrée
         slowLog(suite, 10, () => {
             slowLog(`Vos ordres : `, 10, () => {
@@ -549,20 +586,34 @@ function processOrdre(d) {
             });
         });
     }
+    if (rep == "INVENTAIRE") {
+        show_inventaire();
+        process.stdin.pause(); //stopper l'entrée
+        slowLog(suite, 10, () => {
+            slowLog(`Vos ordres : `, 10, () => {
+                vosOrdres();
+            });
+        });
+    }
+    if (rep == "MAP") {
+        console.log(chalk.green(figlet.textSync('Map du Jeu :', 'Ogre')));
+        afficher_map();
+        console.log(chalk.cyan('Vous êtes W ...'));
+        console.log(chalk.green("A vous d'explorer la Map et de découvrir à quoi correspondent ces Caractères mystèrieux !"));
+        console.log(chalk.green("Cette carte reste un BONUS à ne pas abusé :)"));
+        console.log(chalk.green("Bonne chance !"));
+        process.stdin.pause(); //stopper l'entrée
+        slowLog(suite, 10, () => {
+            slowLog(`Vos ordres : `, 10, () => {
+                vosOrdres();
+            });
+        });
+    }
+
     if (rep == "STATS") {
         console.log("Vie : " + mario.health + " PV.");
         console.log("Vos dégats par tour : " + mario.attack + " points.");
         console.log("Votre armure vous protège des lancés de dé inférieurs à " + mario.armor + ".")
-        process.stdin.pause(); //stopper l'entrée
-        slowLog(suite, 10, () => {
-            slowLog(`Vos ordres : `, 10, () => {
-                vosOrdres();
-            });
-        });
-    }
-
-    if (rep.substr(0, 1).toUpperCase() != rep.substr(0, 1)) {
-        console.log('Mario ne comprend pas quand tu lui parles avec des espaces et des lettres minuscules ! Apprends à lire mon petit !');
         process.stdin.pause(); //stopper l'entrée
         slowLog(suite, 10, () => {
             slowLog(`Vos ordres : `, 10, () => {
