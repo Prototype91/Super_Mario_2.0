@@ -1,4 +1,4 @@
-//Création de la map du jeu
+//Création de la map du jeu avec les symboles
 module.exports = [
     ['P', 'J', '9', '2', '1'],
     ['B', '_', '_', '_', 'L'],
