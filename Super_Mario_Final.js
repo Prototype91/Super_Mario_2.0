@@ -353,7 +353,7 @@ function processOrdre(d) {
             });
         });
     }
-    if (rep == "BOIRE" && playerIsHere(0, 5) || playerIsHere(4, 1)) {
+    if (rep == "BOIRE" && (playerIsHere(0, 5) || playerIsHere(4, 1))) {
         mario.health += 50;
         console.log("Vous venez de boire une potion, votre vie = " + mario.health + " PV.");
         console.log("retournez vite au combat !");
