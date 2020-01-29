@@ -147,7 +147,7 @@ function go(direction) {
             break;
         case "P":
             if (bowser.health <= 0 && bowser_jr.health <= 0 && king_boo.health <= 0 && joueur.x <= 0 && joueur.y <= 0) {
-                console.log("Bravo vous avez sauvez la princesse (.)(.) Tapez FAIRE DES BEBES pour lui faire l'amour ou QUITTER LE JEU pour la laisser.");
+                console.log("Bravo vous avez sauvez la princesse Tapez EMBRASSER LA PRINCESSE pour l'embrasser ou QUITTER LE JEU pour la laisser.");
             } else {
                 console.log("Vous avez trouvé la princesse mais elle semble être enfermée. Battez les 3 Boss !");
             }
@@ -624,7 +624,7 @@ function processOrdre(d) {
         });
     }
 
-    if (rep == "FAIRE DES BEBES" &&
+    if (rep == "EMBRASSER LA PRINCESSE" &&
         bowser.health <= 0 &&
         bowser_jr.health <= 0 &&
         king_boo.health <= 0 &&
@@ -639,7 +639,7 @@ function processOrdre(d) {
                 vosOrdres();
             });
         });
-    } else if (rep == "FAIRE DES BEBES") console.log(chalk.red("Impossible d'effectuer cette action pour le moment !\n")), vosOrdres();
+    } else if (rep == "EMBRASSER LA PRINCESSE") console.log(chalk.red("Impossible d'effectuer cette action pour le moment !\n")), vosOrdres();
 
     if (rep == "QUIT") {
         console.log(chalk.red(figlet.textSync('Game Over', 'Ogre')))

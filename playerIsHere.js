@@ -16,6 +16,6 @@ function playerIsHere(posx, posy) {
     }
 };
 
-if (playerIsHere(2, 5) == false) {
+if (playerIsHere(2, 5) === false) {
     console.log("false")
 }

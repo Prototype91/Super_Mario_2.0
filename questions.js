@@ -38,7 +38,7 @@ module.exports = [
             new inquirer.Separator('-- CHOIX --'),
             { name: 'Oui', value: 'OUI' },
             { name: 'Non', value: 'NON' },
-            { name: 'Faire des Bébés', value: 'FAIRE DES BEBES' },
+            { name: 'Embrasser la Princesse', value: 'EMBRASSER LA PRINCESSE' },
 
             new inquirer.Separator('-- AUTRE --'),
             { name: 'Aides du jeu', value: 'HELP' },

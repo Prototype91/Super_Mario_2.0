@@ -1,0 +1,18 @@
+{
+  "name": "super_mario_2.0",
+  "version": "1.0.0",
+  "description": "Execute Super_Mario_Final.js in your console with Node.js !",
+  "main": "Super_Mario_Final.js",
+  "dependencies": {
+    "chalk": "^2.4.2",
+    "clear": "^0.1.0",
+    "figlet": "^1.2.4",
+    "inquirer": "^6.5.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
